@@ -1,1 +1,2 @@
-# hw_mm21
+# Awsome homework
+Variant #1
