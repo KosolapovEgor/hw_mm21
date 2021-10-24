@@ -1,2 +1,2 @@
-# Awsome homework
+# Homework
 Variant #1
