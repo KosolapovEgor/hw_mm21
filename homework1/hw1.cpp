@@ -8,7 +8,6 @@ using namespace std;
 int main()
 {
     float xl = 0; float yl = 0; float xr = 0; float yr = 0; //Будущие ответы
-    float cosl = 1; float cosp = 1;
 
     string xyn;
     string xy; //Здесь будем хранить текущие координаты
@@ -23,7 +22,9 @@ int main()
     i += 1;
     while (i < xyn.size()) { y_n += xyn[i]; i += 1; }
 
-    float xn = stod(x_n); float yn = stod(y_n); //Координаты направляющего вектора в виде int
+    float xn = stod(x_n); float yn = stod(y_n); //Координаты направляющего вектора в виде float
+    float cosl = round((xn * xn + yn * yn) / (sqrt(xn * xn + yn * yn) * sqrt(xn * xn + yn * yn)) * 10000000000) / 10000000000;
+    float cosp = round((xn * xn + yn * yn) / (sqrt(xn * xn + yn * yn) * sqrt(xn * xn + yn * yn)) * 10000000000) / 10000000000;
 
     while (getline(file, xy)) {
         if ((xy == "") || (xy[0] == char(32))) { continue; }
@@ -43,12 +44,7 @@ int main()
             if (vsl <= cosl) { cosl = vsl; xl = x; yl = y; }
         }
 
-        if (yn * x > xn * y) {
-            float vsp = round((xn * x + yn * y) / (sqrt(xn * xn + yn * yn) * sqrt(x * x + y * y)) * 10000000000) / 10000000000;
-            if (vsp <= cosp) { cosp = vsp; xr = x; yr = y; }
-        }
-
-        if (yn * x == xn * y) {
+        if (yn * x >= xn * y) {
             float vsp = round((xn * x + yn * y) / (sqrt(xn * xn + yn * yn) * sqrt(x * x + y * y)) * 10000000000) / 10000000000;
             if (vsp <= cosp) { cosp = vsp; xr = x; yr = y; }
         }
